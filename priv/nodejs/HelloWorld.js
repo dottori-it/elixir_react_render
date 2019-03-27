@@ -1,10 +1,29 @@
-import React, {Component, createElement} from 'react'
+import React from 'react'
 
-class HelloWorld extends Component {
+class HelloWorld extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      inputText: null
+    }
+  }
+
+  handleInput = (e) => {
+    e.preventDefault()
+    this.setState({
+      inputText: e.target.value
+    })
+  }
+
   render() {
-    const {name} = this.props
+    const {name, ...p} = this.props
 
-    return <div>Hello {name}</div>
+    return <div>
+      <p>Hello {name}</p>
+      <input type="text" onChange={this.handleInput}/>
+      <p>{this.state.inputText}</p>
+    </div>
   }
 }
 
